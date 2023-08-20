@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./firstpage.module.css"; // Import the CSS module
+import styles from "./firstpage.module.css"; 
 import { useNavigate } from "react-router-dom";
 
 interface Info {
@@ -15,7 +15,7 @@ function Firstpage() {
     email: "",
   });
 
-  const navigate = useNavigate(); // Use the correct hook name
+  const navigate = useNavigate(); 
 
   const [info, setinfo] = useState<Info[]>([]);
   const [inputErrors, setInputErrors] = useState<{ [key: string]: string }>({
@@ -26,7 +26,7 @@ function Firstpage() {
 
   const chandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setdata({ ...data, [e.target.name]: e.target.value });
-    setInputErrors({ ...inputErrors, [e.target.name]: "" }); // Clear error message
+    setInputErrors({ ...inputErrors, [e.target.name]: "" }); 
   };
 
   const handler = () => {
@@ -46,7 +46,7 @@ function Firstpage() {
 
     if (Object.keys(errors).length > 0) {
       setInputErrors(errors);
-      return; // Don't proceed if there are errors
+      return; 
     }
 
     setinfo([
@@ -58,17 +58,17 @@ function Firstpage() {
       },
     ]);
 
-    // Save to local storage
+    
     localStorage.setItem("info", JSON.stringify(info));
 
-    // Clear input fields
+    
     setdata({
       first: "",
       phone: "",
       email: "",
     });
 
-    navigate("/secondpage"); // Use the navigate function to redirect
+    navigate("/secondpage"); 
   };
 
   return (
