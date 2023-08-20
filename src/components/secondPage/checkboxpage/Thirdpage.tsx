@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import data from "./data.json";
-import { Accordion, AccordionSummary, AccordionDetails, Checkbox } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Checkbox,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import styles from './Thirdpage.module.css';
+import styles from "./Thirdpage.module.css";
 
 export const Thirdpage = () => {
   const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
   const [expandedDepartments, setExpandedDepartments] = useState<string[]>([]);
 
-  const handleCheckboxChange = (department: string, subDepartment: string) => {
-    const newSelectedDepartments = selectedDepartments.includes(subDepartment)
-      ? selectedDepartments.filter((item) => item !== subDepartment)
-      : [...selectedDepartments, subDepartment];
+  // const handleCheckboxChange = (department: string, subDepartment: string) => {
+  //   const newSelectedDepartments = selectedDepartments.includes(subDepartment)
+  //     ? selectedDepartments.filter((item) => item !== subDepartment)
+  //     : [...selectedDepartments, subDepartment];
 
-    setSelectedDepartments(newSelectedDepartments);
-  };
+  //   setSelectedDepartments(newSelectedDepartments);
+  // };
 
   const handleAccordionChange = (department: string) => {
     const newExpandedDepartments = expandedDepartments.includes(department)
@@ -25,21 +30,32 @@ export const Thirdpage = () => {
   };
 
   const handleDepartmentCheckboxChange = (department: string) => {
-    const allSubDepartments = data.find(item => item.department === department)?.sub_departments || [];
+    const allSubDepartments =
+      data.find((item) => item.department === department)?.sub_departments ||
+      [];
     const newSelectedDepartments = selectedDepartments.includes(department)
-      ? selectedDepartments.filter(item => item !== department && !allSubDepartments.includes(item))
+      ? selectedDepartments.filter(
+          (item) => item !== department && !allSubDepartments.includes(item)
+        )
       : [...selectedDepartments, department, ...allSubDepartments];
 
     setSelectedDepartments(newSelectedDepartments);
   };
 
-  const handleSubDepartmentCheckboxChange = (department: string, subDepartment: string) => {
-    const allSubDepartments = data.find(item => item.department === department)?.sub_departments || [];
+  const handleSubDepartmentCheckboxChange = (
+    department: string,
+    subDepartment: string
+  ) => {
+    const allSubDepartments =
+      data.find((item) => item.department === department)?.sub_departments ||
+      [];
     const newSelectedDepartments = selectedDepartments.includes(subDepartment)
-      ? selectedDepartments.filter(item => item !== subDepartment)
+      ? selectedDepartments.filter((item) => item !== subDepartment)
       : [...selectedDepartments, subDepartment];
 
-    const isAllSubDepartmentsSelected = allSubDepartments.every(subDep => newSelectedDepartments.includes(subDep));
+    const isAllSubDepartmentsSelected = allSubDepartments.every((subDep) =>
+      newSelectedDepartments.includes(subDep)
+    );
     if (isAllSubDepartmentsSelected) {
       newSelectedDepartments.push(department);
     } else {
@@ -74,7 +90,12 @@ export const Thirdpage = () => {
                 <li key={subIndex}>
                   <Checkbox
                     checked={selectedDepartments.includes(subDepartment)}
-                    onChange={() => handleSubDepartmentCheckboxChange(item.department, subDepartment)}
+                    onChange={() =>
+                      handleSubDepartmentCheckboxChange(
+                        item.department,
+                        subDepartment
+                      )
+                    }
                   />
                   {subDepartment}
                 </li>
