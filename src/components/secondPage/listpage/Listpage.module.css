@@ -1,0 +1,11 @@
+/* list.module.css */
+.container {
+    height: 400px;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
