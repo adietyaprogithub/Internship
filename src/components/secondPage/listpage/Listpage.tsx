@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import styles from './Listpage.module.css'
+import styles from "./Listpage.module.css";
 
 interface Post {
   userId: number;
@@ -39,13 +39,7 @@ export const List = () => {
     <div className={styles.container}>
       <div className={styles.title}>List is here</div>
       <div className={styles.container}>
-        <DataGrid
-          rows={data}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5, 10, 20]}
-          disableSelectionOnClick
-        />
+        <DataGrid rows={data} columns={columns} />
       </div>
     </div>
   );
